@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUTANT CITY - Access Terminal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="scanlines"></div>
+    
+    <main class="terminal-container" id="loginView">
+        <header class="terminal-header">
+            <div class="status-indicator">
+                <span class="dot pulse"></span>
+                <span class="status-text">NETWORK: ACTIVE [ENCRYPTED]</span>
+            </div>
+            <h1 class="glitch-text" data-text="MUTANT CITY">MUTANT CITY</h1>
+            <div class="geo-data">LAT: 40.7128° N | LONG: 74.0060° W</div>
+        </header>
+
+        <section class="login-box">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+
+            <div class="terminal-screen">
+                <div class="boot-sequence">
+                    <p>> INITIALIZING BUNK-OS v2.4...</p>
+                    <p>> DECRYPTING BIOMETRIC PROTOCOLS...</p>
+                    <p>> ACCESS REQUIRED</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="input-group">
+                        <label for="username">IDENT_ID:</label>
+                        <input type="text" id="username" autocomplete="off" placeholder="NAME" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">ACCESS_CODE:</label>
+                        <input type="password" id="password" placeholder="••••" required>
+                    </div>
+                    <button type="submit" class="access-btn">
+                        <span class="btn-text">INITIALIZE_SESSION</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </form>
+
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+        </section>
+
+        <footer class="terminal-footer">
+            <div class="battery-status">
+                <span>AUX_POWER: 82%</span>
+                <div class="battery-bar"><div class="fill"></div></div>
+            </div>
+            <div class="warning">CAUTION: RADIOLOGICAL HAZARD DETECTED</div>
+        </footer>
+    </main>
+
+    <!-- Admin Dashboard View -->
+    <section id="adminView" class="hidden-view dashboard-view">
+        <div class="dashboard-panel">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <header>
+                <h2>ADMIN_CONTROL_CENTER</h2>
+                <div class="user-info">LOGGED: <span id="adminName">ADMIN</span></div>
+            </header>
+            
+            <div class="tools-grid">
+                <div class="tool-card island-creator">
+                    <h3>[+] CREAR_ISLA</h3>
+                    <p>Upload architectural schematic (100x700 recommended)</p>
+                    <form id="islandForm" enctype="multipart/form-data">
+                        <input type="text" id="islandName" placeholder="NOM_ISLA" required>
+                        <div class="file-upload">
+                            <label for="islandImage" class="custom-file-upload">CARGAR_IMAGEN</label>
+                            <input type="file" id="islandImage" accept="image/*" required>
+                        </div>
+                        <div class="coord-inputs">
+                            <input type="number" id="islandX" placeholder="POS_X" value="100">
+                            <input type="number" id="islandY" placeholder="POS_Y" value="100">
+                        </div>
+                        <button type="submit" class="access-btn">DESPLEGAR_ISLA</button>
+                    </form>
+                </div>
+            </div>
+
+            <button class="nav-btn" onclick="showView('mapView')">VER_MAPA</button>
+        </div>
+    </section>
+
+    <!-- Game Map View -->
+    <section id="mapView" class="hidden-view game-map-view">
+        <div class="corrosive-sea">
+            <div class="toxic-fog"></div>
+            <div id="islandContainer" class="island-container">
+                <!-- Islands will be injected here -->
+            </div>
+        </div>
+        <div class="map-overlay">
+            <div class="map-stats">RADS: 45.2 mSv/h | WIND: NE 15km/h</div>
+            <button class="nav-btn back-btn" onclick="showView('adminView')">REGRESAR</button>
+        </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

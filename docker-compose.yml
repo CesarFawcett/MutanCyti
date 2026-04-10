@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mutancyti-app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - ./uploads:/usr/src/app/uploads
+    restart: always
+    environment:
+      - NODE_ENV=development
